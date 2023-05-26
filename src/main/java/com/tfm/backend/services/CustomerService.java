@@ -3,6 +3,7 @@ import com.tfm.backend.data.daos.*;
 import com.tfm.backend.data.entities.*;
 import com.tfm.backend.services.exceptions.ConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -10,9 +11,12 @@ import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @Service
 public class CustomerService {
+
+    private final JwtService jwtService;
     private final CustomerRepository customerRepository;
     private final CustomerTypeRepository customerTypeRepository;
     private final UserRepository userRepository;
@@ -20,9 +24,10 @@ public class CustomerService {
     private final SubscriptionRepository subscriptionRepository;
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository, UserRepository userRepository,
-                           CustomerTypeRepository customerTypeRepository, PlanRepository planRepository,
-                           SubscriptionRepository subscriptionRepository) {
+    public CustomerService(JwtService jwtService, CustomerRepository customerRepository,
+                           UserRepository userRepository, CustomerTypeRepository customerTypeRepository,
+                           PlanRepository planRepository, SubscriptionRepository subscriptionRepository) {
+        this.jwtService = jwtService;
         this.customerRepository = customerRepository;
         this.customerTypeRepository = customerTypeRepository;
         this.planRepository = planRepository;
@@ -47,6 +52,12 @@ public class CustomerService {
                 .subscription_end_date(LocalDate.of(2999, 12, 31))
                 .cups(this.generateCups()).build());
 
+    }
+
+    public Stream<Customer> findCustomerFromEmail(String token){
+        User user = userRepository.findByEmail(jwtService.userFromBearer(token))
+                .orElseThrow(() -> new UsernameNotFoundException("email not found. "));
+        return this.customerRepository.findByUser(user).stream();
     }
 
     private void assertNoExistByEmail(String email) {

@@ -89,7 +89,7 @@ public class UserSeederDev {
                         .registrationDate(LocalDateTime.now()).active(true).build(),
                 User.builder().mobile("123456789").address("c/ test 1").firstName("abc").email("abc@gmail.com").password(pass).email("abc@hot.com").role(Role.CUSTOMER)
                         .registrationDate(LocalDateTime.now()).active(true).build(),
-                User.builder().mobile("123456788").address("c/ test 2").firstName("Cdb").familyName("Cheic").email("cdb@gmail.com")
+                User.builder().mobile("123456788").address("c/ test 2").firstName("Cdb").familyName("Cheic")
                         .dni("55555665H").password(pass).email("cdb@hot.com").role(Role.CUSTOMER)
                         .registrationDate(LocalDateTime.now()).active(true).build(),
         };
