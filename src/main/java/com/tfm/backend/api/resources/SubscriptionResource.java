@@ -5,11 +5,9 @@ import com.tfm.backend.services.CustomerService;
 import com.tfm.backend.services.SubscriptionService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.stream.Stream;
 
 @RestController
@@ -33,6 +31,14 @@ public class SubscriptionResource {
         return this.customerService.findCustomerFromEmail(token)
                 .flatMap(this.subscriptionService::findByCustomer)
                 .map(SubscriptionDto::new);
+    }
+
+    @SecurityRequirement(name = "bearerAuth")
+    @PostMapping
+    public void createSubscription(@Valid @RequestBody SubscriptionDto subscriptionDto,
+                                   @RequestHeader(value = "Authorization") String token)  {
+        this.customerService.findCustomerFromEmail(token)
+                .forEach(customer -> this.subscriptionService.createSubscription(subscriptionDto, customer));
     }
 
 
