@@ -28,4 +28,16 @@ public class SubscriptionResourceIT {
                         .anyMatch(subscription -> "ES0021000005407136XK".equals(subscription.getCups()))));
 
     }
+
+    @Test
+    void testCreateSubscription() {
+        this.restClientTestService.loginCustomer(this.webTestClient)
+                .post()
+                .uri(SUBSCRIPTION)
+                .bodyValue(SubscriptionDto.builder()
+                        .planName("plan estable").address("c/ test 5").productName("Electricidad")
+                        .cups("ES0021000005407136XQ").tariff("BT 2.0 TD").build())
+                .exchange().expectStatus().isOk();
+
+    }
 }
