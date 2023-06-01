@@ -25,7 +25,7 @@ public class SubscriptionResourceIT {
                 .exchange().expectStatus().isOk()
                 .expectBodyList(SubscriptionDto.class)
                 .value(subscriptions -> assertTrue(subscriptions.stream()
-                        .anyMatch(subscription -> "ES0021000005407136XK".equals(subscription.getCups()))));
+                        .anyMatch(subscription -> "ES0021000005407138XK".equals(subscription.getCups()))));
 
     }
 
