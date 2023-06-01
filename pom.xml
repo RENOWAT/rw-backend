@@ -28,6 +28,8 @@
         <jwt.version>3.18.2</jwt.version>
         <!-- OpenAPI -->
         <openapi.version>1.5.12</openapi.version>
+        <!-- pdf -->
+        <itextpdf.version>7.0.2</itextpdf.version>
     </properties>
     <dependencies>
         <dependency>
@@ -80,6 +82,21 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>kernel</artifactId>
+            <version>${itextpdf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>layout</artifactId>
+            <version>${itextpdf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>barcodes</artifactId>
+            <version>${itextpdf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>

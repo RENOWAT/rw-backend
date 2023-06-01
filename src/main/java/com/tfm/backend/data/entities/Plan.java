@@ -22,16 +22,16 @@ public class Plan {
     private int id;
     private String name;
     private Integer planNumber;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "numeric(19,4)")
     private BigDecimal p1;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "numeric(19,4)")
     private BigDecimal p2;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "numeric(19,4)")
     private BigDecimal p3;
     @Column(nullable = false)
-    private BigDecimal tf1;
-    @Column(nullable = false)
-    private BigDecimal tf2;
+    private BigDecimal tf;
+    @Column(nullable = false, columnDefinition = "numeric(19,5)")
+    private BigDecimal ptf;
     @ManyToOne
     @JoinColumn(name="product_id", nullable=false)
     private Product product;
