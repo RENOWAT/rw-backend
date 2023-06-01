@@ -24,6 +24,9 @@ public class Invoice {
     private LocalDate invoiceStartDate;
     private LocalDate invoiceEndDate;
     private BigDecimal consumption;
+    private BigDecimal c1;
+    private BigDecimal c2;
+    private BigDecimal c3;
     private BigDecimal amount;
     private String currency;
     @CreationTimestamp
