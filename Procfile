@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/backend-1.1.0-Release.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/backend-1.2.0-Release.jar
