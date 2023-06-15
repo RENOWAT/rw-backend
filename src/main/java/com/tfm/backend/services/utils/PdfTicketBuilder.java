@@ -27,11 +27,12 @@ public class PdfTicketBuilder {
         BigDecimal energyCostC1 = invoice.getC1().multiply(subscription.getPlan().getP1()).setScale(3, RoundingMode.HALF_UP);
         BigDecimal energyCostC2 = invoice.getC2().multiply(subscription.getPlan().getP2()).setScale(3, RoundingMode.HALF_UP);
         BigDecimal energyCostC3 = invoice.getC3().multiply(subscription.getPlan().getP3()).setScale(3, RoundingMode.HALF_UP);
-        BigDecimal fixedTerm = subscription.getPlan().getPtf().multiply(subscription.getPlan().getPtf()).setScale(3, RoundingMode.HALF_UP);
+        BigDecimal fixedTerm = subscription.getPlan().getPtf().multiply(subscription.getPlan().getTf()).setScale(3, RoundingMode.HALF_UP);
         BigDecimal totalCostBeforeTax = energyCost.add(fixedTerm).setScale(3, RoundingMode.HALF_UP);
         BigDecimal tax = totalCostBeforeTax.multiply(BigDecimal.valueOf(0.05)).setScale(3, RoundingMode.HALF_UP);
 
         pdf.head();
+
         pdf.paragraphEmphasized("Titular:"+ subscription.getCustomer().getUser().getFirstName()
                         + " "+ subscription.getCustomer().getUser().getFamilyName())
                 .paragraphEmphasized("Dirección de suministro: "+ subscription.getCustomer().getUser().getAddress())

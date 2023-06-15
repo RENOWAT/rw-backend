@@ -61,7 +61,7 @@ public class RestClientTestService {
     }
 
     public WebTestClient loginCustomer(WebTestClient webTestClient) {
-        return this.login(Role.CUSTOMER, "cdb@hot.com", webTestClient);
+        return this.login(Role.CUSTOMER, "testuser1@gmail.com", webTestClient);
     }
 
     public String getToken() {
