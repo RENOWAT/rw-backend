@@ -32,6 +32,7 @@ public class PdfTicketBuilder {
         BigDecimal tax = totalCostBeforeTax.multiply(BigDecimal.valueOf(0.05)).setScale(3, RoundingMode.HALF_UP);
 
         pdf.head();
+
         pdf.paragraphEmphasized("Titular:"+ subscription.getCustomer().getUser().getFirstName()
                         + " "+ subscription.getCustomer().getUser().getFamilyName())
                 .paragraphEmphasized("Dirección de suministro: "+ subscription.getCustomer().getUser().getAddress())
