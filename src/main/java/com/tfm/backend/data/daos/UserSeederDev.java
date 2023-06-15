@@ -59,6 +59,8 @@ public class UserSeederDev {
         this.customerTypeRepository.deleteAll();
         this.productRepository.deleteAll();
         this.userRepository.deleteAll();
+        this.tariffRepository.deleteAll();
+
 
         LogManager.getLogger(this.getClass()).warn("------- Deleted All -----------");
         this.databaseStarting.initialize();
@@ -90,7 +92,7 @@ public class UserSeederDev {
                 User.builder().mobile("123456789").address("c/ test 1").firstName("abc").email("abc@gmail.com").password(pass).email("abc@hot.com").role(Role.CUSTOMER)
                         .registrationDate(LocalDateTime.now()).active(true).build(),
                 User.builder().mobile("123456788").address("c/ test 2").firstName("Cdb").familyName("Cheic")
-                        .dni("55555665H").password(pass).email("cdb@hot.com").role(Role.CUSTOMER)
+                        .dni("55555665H").password(pass).email("testuser1@gmail.com").role(Role.CUSTOMER)
                         .registrationDate(LocalDateTime.now()).active(true).build(),
         };
         this.userRepository.saveAll(Arrays.asList(users));
@@ -132,7 +134,7 @@ public class UserSeederDev {
                         .p1(BigDecimal.valueOf(0.1384)).p2(BigDecimal.valueOf(0.1384)).p3(BigDecimal.valueOf(0.1384))
                         .tf(BigDecimal.valueOf(3.45)).ptf(BigDecimal.valueOf(2.63268)).product(products[0])
                         .build(),
-                Plan.builder().name("plan noche").planNumber(2)
+                Plan.builder().name("plan online").planNumber(2)
                         .p1(BigDecimal.valueOf(0.055)).p2(BigDecimal.valueOf(0.151)).p3(BigDecimal.valueOf(0.163))
                         .tf(BigDecimal.valueOf(3.45)).ptf(BigDecimal.valueOf(2.63268)).product(products[0])
                         .build(),
@@ -166,16 +168,16 @@ public class UserSeederDev {
         Invoice[] invoices = {
                 Invoice.builder().invoiceStartDate(LocalDate.of(2023, 1, 1))
                         .invoiceEndDate(LocalDate.of(2023, 1, 30))
-                        .consumption(BigDecimal.valueOf(266))
-                        .c1(BigDecimal.valueOf(11)).c2(BigDecimal.valueOf(125)).c3(BigDecimal.valueOf(130))
+                        .consumption(BigDecimal.valueOf(270))
+                        .c1(BigDecimal.valueOf(12)).c2(BigDecimal.valueOf(120)).c3(BigDecimal.valueOf(138))
                         .amount(BigDecimal.valueOf(48.77)).currency("euro")
                         .invoiceDue(LocalDate.of(2023, 1, 15)).invoicePaid(false)
                         .subscription(subscriptions[0])
                         .build(),
                 Invoice.builder().invoiceStartDate(LocalDate.of(2023, 2, 1))
                         .invoiceEndDate(LocalDate.of(2023, 2, 28))
-                        .consumption(BigDecimal.valueOf(270))
-                        .c1(BigDecimal.valueOf(12)).c2(BigDecimal.valueOf(120)).c3(BigDecimal.valueOf(138))
+                        .consumption(BigDecimal.valueOf(266))
+                        .c1(BigDecimal.valueOf(11)).c2(BigDecimal.valueOf(125)).c3(BigDecimal.valueOf(130))
                         .amount(BigDecimal.valueOf(48.19)).currency("euro")
                         .invoiceDue(LocalDate.of(2023, 2, 15)).invoicePaid(true)
                         .subscription(subscriptions[0])
