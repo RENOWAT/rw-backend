@@ -3,7 +3,6 @@ package com.tfm.backend.services;
 import com.tfm.backend.TestConfig;
 import com.tfm.backend.data.daos.InvoiceRepository;
 import com.tfm.backend.data.entities.Invoice;
-import com.tfm.backend.services.utils.PdfTicketBuilder;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
@@ -35,6 +34,5 @@ public class InvoiceServiceIT {
         Stream<Invoice> result = invoiceService.findBySubscriptionId(subscriptionId);
         assertEquals(2, result.count());
     }
-
 
 }
